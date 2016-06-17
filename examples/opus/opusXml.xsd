@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.ngs.noaa.gov/OPUS/schema/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ngs.noaa.gov/OPUS/schema/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="OPUS_SOLUTION">
+		<xs:annotation>
+			<xs:documentation>Root Element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SOLUTION_TIME" type="xs:string"/>
+				<xs:element name="OBSERVATION_TIME">
+					<xs:complexType>
+						<xs:attribute name="START" type="xs:string" use="required"/>
+						<xs:attribute name="END" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SOFTWARE_VERSION">
+					<xs:complexType>
+						<xs:attribute name="PAGES" type="xs:string" use="required"/>
+						<xs:attribute name="OPUS" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CONTRIBUTOR">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="EMAIL" type="xs:string"/>
+							<xs:element name="AGENCY" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="URL" type="xs:string"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="DATA_SOURCES">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RINEX_FILE" type="xs:string"/>
+							<xs:element name="EPHEMERIS_FILE">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="TYPE" type="xs:string" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="NAV_FILE" type="xs:string"/>
+							<xs:element name="ANTENNA">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NAME" type="xs:string"/>
+										<xs:element name="ARP_HEIGHT">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:double">
+														<xs:attribute name="UNIT" type="xs:string" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="DATA_QUALITY">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ACCURACY">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="LAT" type="xs:double"/>
+										<xs:element name="LONG" type="xs:double"/>
+										<xs:element name="EL_HEIGHT" type="xs:double"/>
+									</xs:sequence>
+									<xs:attribute name="UNIT" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="PERCENT_OBS_USED">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:int">
+											<xs:attribute name="TOTAL" type="xs:int" use="required"/>
+											<xs:attribute name="USED" type="xs:int" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="PERCENT_AMB_FIXED">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:int">
+											<xs:attribute name="TOTAL" type="xs:int" use="required"/>
+											<xs:attribute name="FIXED" type="xs:int" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="RMS">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:double">
+											<xs:attribute name="UNIT" type="xs:string" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="POSITION" minOccurs="2" maxOccurs="2">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="REF_FRAME" type="xs:string"/>
+							<xs:element name="EPOCH" type="xs:string"/>
+							<xs:element name="COORD_SET">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RECT_COORD">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="COORDINATE" minOccurs="3" maxOccurs="3">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:double">
+																	<xs:attribute name="AXIS" type="xs:string" use="required"/>
+																	<xs:attribute name="UNIT" type="xs:string" use="required"/>
+																	<xs:attribute name="UNCERTAINTY" type="xs:double" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="ELLIP_COORD">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="LAT">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="DEGREES" type="xs:int"/>
+																<xs:element name="MINUTES" type="xs:int"/>
+																<xs:element name="SECONDS" type="xs:double"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="EAST_LONG">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="DEGREES" type="xs:int"/>
+																<xs:element name="MINUTES" type="xs:int"/>
+																<xs:element name="SECONDS" type="xs:double"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="WEST_LONG" minOccurs="0">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="DEGREES" type="xs:int"/>
+																<xs:element name="MINUTES" type="xs:int"/>
+																<xs:element name="SECONDS" type="xs:double"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="EL_HEIGHT">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:double">
+																	<xs:attribute name="UNIT" type="xs:string" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ORTHO_HGT">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:double">
+								<xs:attribute name="UNCERTAINTY" type="xs:double"/>
+								<xs:attribute name="UNIT" type="xs:string"/>
+								<xs:attribute name="SOURCE" type="xs:string"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PLANE_COORD_INFO">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="PLANE_COORD_SPEC" minOccurs="2" maxOccurs="2">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NORTHING">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:double">
+														<xs:attribute name="UNIT" type="xs:string" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="EASTING">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:double">
+														<xs:attribute name="UNIT" type="xs:string" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="CONVERGENCE">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:double">
+														<xs:attribute name="UNIT" type="xs:string" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="SCALE" type="xs:double"/>
+										<xs:element name="CF" type="xs:double"/>
+									</xs:sequence>
+									<xs:attribute name="TYPE" type="xs:string" use="required"/>
+									<xs:attribute name="ZONE" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="USNG" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="BASE_STATION_USED" minOccurs="3" maxOccurs="3">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="PID" type="xs:string"/>
+							<xs:element name="STATION_ID" type="xs:string"/>
+							<xs:element name="DESIGNATION" type="xs:string"/>
+							<xs:element name="LATITUDE" type="xs:string"/>
+							<xs:element name="LONGITUDE" type="xs:string"/>
+							<xs:element name="DISTANCE" type="xs:double"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="NGS_PUBLISHED_CONTROL_POINT">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="PID" type="xs:string"/>
+							<xs:element name="DESIGNATION" type="xs:string"/>
+							<xs:element name="LATITUDE" type="xs:string"/>
+							<xs:element name="LONGITUDE" type="xs:string"/>
+							<xs:element name="DISTANCE" type="xs:double"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="BASE_STATION_INFORMATION" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence minOccurs="3" maxOccurs="3">
+							<xs:element name="STATION_NAME" type="xs:string"/>
+							<xs:element name="ANTENNA">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="SN" type="xs:string" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="BASE_STATION_STATS">
+								<xs:complexType>
+									<xs:choice minOccurs="16" maxOccurs="16">
+										<xs:element name="XYZ">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="ATTR" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="NEU">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="ATTR" type="xs:string" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="LLH">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="ATTR" type="xs:string" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="REMOTE_STATION_INFORMATION" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="STATION_NAME" type="xs:string"/>
+							<xs:element name="ANTENNA">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="SN" type="xs:string" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="REMOTE_STATION_STATS">
+								<xs:complexType>
+									<xs:choice minOccurs="7" maxOccurs="7">
+										<xs:element name="XYZ">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="ATTR" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="NEU">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="ATTR" type="xs:string" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="BASELINE_DATA">
+								<xs:complexType>
+									<xs:sequence minOccurs="3" maxOccurs="3">
+										<xs:element name="BASELINE_NAME" type="xs:string"/>
+										<xs:element name="BASELINE_STATS">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="XYZ" minOccurs="4" maxOccurs="4">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="ATTR" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="LLH" minOccurs="3" maxOccurs="3">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="ATTR" type="xs:string"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="G_FILES" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="STATION" minOccurs="3" maxOccurs="3">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="RECORD_TYPE_A" type="xs:string"/>
+										<xs:element name="RECORD_TYPE_B" type="xs:string"/>
+										<xs:element name="RECORD_TYPE_I" type="xs:string"/>
+										<xs:element name="RECORD_TYPE_C" type="xs:string"/>
+										<xs:element name="RECORD_TYPE_D" type="xs:string"/>
+									</xs:sequence>
+									<xs:attribute name="ID" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="OBSERVATIONS" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="STATION_TO_STATION" minOccurs="3" maxOccurs="3">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="OVERALL" type="xs:int"/>
+										<xs:element name="OBS" type="xs:string"/>
+									</xs:sequence>
+									<xs:attribute name="ID" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="COVARIANCE_MATRIX" minOccurs="0" maxOccurs="2">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ROW1" type="xs:string"/>
+							<xs:element name="ROW2" type="xs:string"/>
+							<xs:element name="ROW3" type="xs:string"/>
+						</xs:sequence>
+						<xs:attribute name="PARM" type="xs:string" use="required"/>
+						<xs:attribute name="UNIT" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="NETWORK_ACCURACY" minOccurs="0" maxOccurs="2">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:double">
+								<xs:attribute name="DIR" type="xs:string" use="required"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="NOTE" type="xs:string"/>
+				<xs:choice minOccurs="0">
+					<xs:element name="MARK_METADATA">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="PID" type="xs:string"/>
+								<xs:element name="DESIGNATION" type="xs:string"/>
+								<xs:element name="STAMPING" type="xs:string"/>
+								<xs:element name="MONUMENT_TYPE">
+									<xs:complexType>
+										<xs:simpleContent>
+											<xs:extension base="xs:string">
+												<xs:attribute name="CODE" type="xs:string"/>
+											</xs:extension>
+										</xs:simpleContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="MONUMENT_DESC">
+									<xs:complexType>
+										<xs:simpleContent>
+											<xs:extension base="xs:string">
+												<xs:attribute name="CODE" type="xs:string" use="required"/>
+											</xs:extension>
+										</xs:simpleContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="ROD_DEPTH" minOccurs="0">
+									<xs:complexType>
+										<xs:simpleContent>
+											<xs:extension base="xs:string">
+												<xs:attribute name="UNIT" type="xs:string"/>
+											</xs:extension>
+										</xs:simpleContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="SLEEVE_DEPTH" minOccurs="0">
+									<xs:complexType>
+										<xs:simpleContent>
+											<xs:extension base="xs:string">
+												<xs:attribute name="UNIT" type="xs:string"/>
+											</xs:extension>
+										</xs:simpleContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="SETTING">
+									<xs:complexType>
+										<xs:simpleContent>
+											<xs:extension base="xs:string">
+												<xs:attribute name="CODE" type="xs:string" use="required"/>
+											</xs:extension>
+										</xs:simpleContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="SPECIFIC_SETTING" type="xs:string" minOccurs="0"/>
+								<xs:element name="STABILITY" minOccurs="0">
+									<xs:complexType>
+										<xs:simpleContent>
+											<xs:extension base="xs:string">
+												<xs:attribute name="CODE" type="xs:string"/>
+											</xs:extension>
+										</xs:simpleContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="MAGNETIC" minOccurs="0">
+									<xs:complexType>
+										<xs:simpleContent>
+											<xs:extension base="xs:string">
+												<xs:attribute name="CODE" type="xs:string" use="required"/>
+											</xs:extension>
+										</xs:simpleContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="SPECIAL_APPLICATION" minOccurs="0">
+									<xs:complexType>
+										<xs:simpleContent>
+											<xs:extension base="xs:string">
+												<xs:attribute name="CODE" use="required"/>
+											</xs:extension>
+										</xs:simpleContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="ANTENNA_SN" type="xs:string" minOccurs="0"/>
+								<xs:element name="RECEIVER" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="SN" type="xs:string" minOccurs="0"/>
+											<xs:element name="MODEL" type="xs:string" minOccurs="0"/>
+											<xs:element name="FIRMWARE" type="xs:string" minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="MARK_CONDITION" type="xs:string" minOccurs="0"/>
+								<xs:element name="DESCRIPTION" type="xs:string"/>
+								<xs:element name="IMAGE" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:simpleContent>
+											<xs:extension base="xs:string">
+												<xs:attribute name="TYPE" type="xs:string" use="required"/>
+											</xs:extension>
+										</xs:simpleContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="SEQUENCE" type="xs:string" minOccurs="0"/>
+							</xs:sequence>
+							<xs:attribute name="TYPE" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="NEW"/>
+										<xs:enumeration value="RECOVERY"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="MARK_HISTORY" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence maxOccurs="unbounded">
+							<xs:element name="HISTORY">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="SOURCE">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute name="SID"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="CONDITION" type="xs:string"/>
+										<xs:element name="AGENCY" type="xs:string"/>
+										<xs:element name="CHIEF_OF_PARTY" type="xs:string"/>
+										<xs:element name="DESCRIPTION" type="xs:string"/>
+									</xs:sequence>
+									<xs:attribute name="DATE" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="RETRIEVAL" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="TIME" type="xs:string" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="SID" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
