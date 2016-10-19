@@ -32,7 +32,7 @@ class Mock(object):
 		else:
 			return Mock()
 
-MOCK_MODULES = ['lxml','fiona','shapely']
+MOCK_MODULES = ['lxml','fiona', 'fiona.crs', 'shapely', 'shapely.geometry']
 for mod_name in MOCK_MODULES:
 	sys.modules[mod_name] = Mock()
 
