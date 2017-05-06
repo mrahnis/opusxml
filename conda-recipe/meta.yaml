@@ -1,0 +1,37 @@
+package:
+  name: opusxml
+  version: "0.0.0"
+
+source:
+  git_url: https://github.com/mrahnis/opusxml.git
+  git_rev: head
+
+build:
+  noarch: python
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record=record.txt
+  entry_points:
+    - opusxml = opusxml.cli.opusxml:cli
+    
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - python
+    - click
+    - lxml
+    - pint 
+    - shapely
+    - fiona
+
+test:
+  imports:
+    - opusxml
+  commands:
+    - opusxml --help
+
+about:
+  home: https://github.com/mrahnis/opusxml
+  license: BSD
+  license_file: LICENSE.txt
