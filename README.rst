@@ -4,6 +4,16 @@ OPUSXML
 
 OPUSXML is a Python library to read OPUSXML files produced by the Online Positioning User Service (OPUS_) hosted by the National Geodetic Survey. It prints information from OPUSXML files and converts them to formats supported by GDAL.
 
+.. image:: https://travis-ci.org/mrahnis/opusxml.svg?branch=master
+    :target: https://travis-ci.org/mrahnis/opusxml
+
+.. image:: https://ci.appveyor.com/api/projects/status/github/mrahnis/opusxml?svg=true
+	:target: https://ci.appveyor.com/api/projects/status/github/mrahnis/opusxml?svg=true
+
+.. image:: https://readthedocs.org/projects/opusxml/badge/?version=latest
+	:target: http://opusxml.readthedocs.io/en/latest/?badge=latest
+	:alt: Documentation Status
+
 Dependencies
 ============
 
