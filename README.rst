@@ -29,13 +29,25 @@ OPUSXML 0.0.0 depends on:
 Installation
 ============
 
-To install from the source distribution execute the setup script in the opusinfo directory:
+To install from the Python Package Index:
+
+.. code-block:: console
+
+	$pip install opusxml
+
+To install from Anaconda Cloud:
+
+If you are starting from scratch the first thing to do is install the Anaconda Python distribution, add the necessary channels to obtain the dependencies and install opusxml.
+
+.. code-block:: console
+
+	$conda config --append channels conda-forge
+	$conda config --append channels mrahnis
+	$conda install opusxml
+
+To install from the source distribution execute the setup script in the opusxml directory:
 
 	$python setup.py install
-
-Windows users just getting started may choose to install a Python distribution to obtain the requirements:
-
-* Install Anaconda from `Continuum Analytics`_ or Canopy from `Enthought`_
 
 Examples
 ========
