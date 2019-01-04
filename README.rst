@@ -14,20 +14,14 @@ OPUSXML is a Python library to read OPUSXML files produced by the Online Positio
 	:target: http://opusxml.readthedocs.io/en/latest/?badge=latest
 	:alt: Documentation Status
 
-Dependencies
-============
-
-OPUSXML 0.0.0 depends on:
-
-* `Python 2.7 or 3.x`_
-* lxml_
-* Click_
-* pint_
-* shapely_
-* fiona_
-
 Installation
 ============
+
+.. image:: https://img.shields.io/pypi/v/opusxml.svg
+	:target: https://pypi.python.org/pypi/opusxml/
+
+.. image:: https://anaconda.org/mrahnis/opusxml/badges/version.svg
+	:target: https://anaconda.org/mrahnis/opusxml
 
 To install from the Python Package Index:
 
