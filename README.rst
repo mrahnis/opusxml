@@ -7,8 +7,8 @@ OPUSXML is a Python library to read OPUSXML files produced by the Online Positio
 .. image:: https://travis-ci.org/mrahnis/opusxml.svg?branch=master
     :target: https://travis-ci.org/mrahnis/opusxml
 
-.. image:: https://ci.appveyor.com/api/projects/status/github/mrahnis/opusxml?svg=true
-	:target: https://ci.appveyor.com/api/projects/status/github/mrahnis/opusxml?svg=true
+.. image:: https://ci.appveyor.com/api/projects/status/qj28xywprbrjwn4d?svg=true
+	:target: https://ci.appveyor.com/project/mrahnis/opusxml
 
 .. image:: https://readthedocs.org/projects/opusxml/badge/?version=latest
 	:target: http://opusxml.readthedocs.io/en/latest/?badge=latest
@@ -36,8 +36,7 @@ If you are starting from scratch the first thing to do is install the Anaconda P
 .. code-block:: console
 
 	$conda config --append channels conda-forge
-	$conda config --append channels mrahnis
-	$conda install opusxml
+	$conda install opusxml -c mrahnis
 
 To install from the source distribution execute the setup script in the opusxml directory:
 

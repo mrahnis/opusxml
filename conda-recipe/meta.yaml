@@ -33,5 +33,6 @@ test:
 
 about:
   home: https://github.com/mrahnis/opusxml
+  description: Python library to read and convert OPUSXML files
   license: BSD
   license_file: LICENSE.txt
