@@ -53,7 +53,7 @@ def cli():
 @click.option('-u', '--unit', metavar='UNIT', type=click.Choice(['meter', 'm', 'foot', 'ft', 'survey_foot', 'sft']), default='m', help="Distance units")
 @click.option('-s', '--system', metavar='SYSTEM', type=click.Choice(['UTM', 'SPC', 'XYZ', 'LLA', 'LLH']), default='UTM', help="Coordinate system")
 @click.option('-v', '--verbose', is_flag=True, help='Enables verbose mode')
-def info(files, unit, position, verbose):
+def info(files, unit, system, position, verbose):
 
     if verbose is True:
         loglevel = 2
@@ -85,6 +85,7 @@ def info(files, unit, position, verbose):
         print("MARK INFO")
         print('------------------------')
         print_dict(info)
+
 
 @click.command()
 @click.argument('outfile', nargs=1, type=click.Path(exists=False), metavar='OUTFILE')
@@ -199,6 +200,7 @@ def convert(outfile, files, unit, system, frame, verbose):
                 'properties': sln.solution_info(),
                 'geometry': mapping(point)
             })
+
 
 cli.add_command(info)
 cli.add_command(convert)
