@@ -1,23 +1,15 @@
-from os import path
 from setuptools import setup, find_packages
+import versioneer
 
 
-for line in open('opusxml/__init__.py', 'r'):
-    if line.find("__version__") >= 0:
-        version = line.split("=")[1].strip()
-        version = version.strip('"')
-        version = version.strip("'")
-        continue
-
-with open('VERSION.txt', 'w') as fp:
-    fp.write(version)
-
-current_directory = path.abspath(path.dirname(__file__))
-with open(path.join(current_directory, 'README.rst'), 'r', encoding='utf-8') as f:
+with open('README.rst', 'r', encoding='utf-8') as f:
     long_description = f.read()
+with open("requirements.txt", "r") as f:
+    requirements = [line.strip() for line in f]
 
 setup(name='opusxml',
-      version=version,
+      version=versioneer.get_version(),
+      cmdclass=versioneer.get_cmdclass(),
       author='Michael Rahnis',
       author_email='mike@topomatrix.com',
       description='Python library to read and convert OPUSXML files',
@@ -26,9 +18,7 @@ setup(name='opusxml',
       url='http://github.com/mrahnis/opusxml',
       license='BSD',
       packages=find_packages(),
-      install_requires=[
-          'lxml','click','pint','shapely','fiona'
-      ],
+      install_requires=requirements,
       entry_points='''
           [console_scripts]
           opusxml=opusxml.cli.opusxml:cli
