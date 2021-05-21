@@ -10,7 +10,7 @@ opusxml.exe convert  -u sft -s XYZ outfile.json ./examples/opus/2010096o.10o.xml
 
 """
 
-from __future__ import print_function
+from __future__ import annotations
 
 import os
 import sys
@@ -29,24 +29,27 @@ from opusxml.tools.fips_mapping import NAD83_2011, NAD83_CORS96
 
 # map unit names recognized by pint to names recognized by proj4
 unit_mapping = {
-    'meter' : 'm',
-    'm' : 'm',
-    'foot' : 'ft',
-    'ft' : 'ft',
-    'survey_foot' : 'us-ft',
-    'sft' : 'us-ft'
+    'meter': 'm',
+    'm': 'm',
+    'foot': 'ft',
+    'ft': 'ft',
+    'survey_foot': 'us-ft',
+    'sft': 'us-ft'
 }
 
-def print_dict(info):
+
+def print_dict(info: dict):
     """
     Print a dict
     """
     for k, v in info.items():
         print('{:>24} : {}'.format(k, v))
 
+
 @click.group()
 def cli():
     pass
+
 
 @click.command()
 @click.argument('files', nargs=-1, type=click.Path(exists=True), metavar='FILES')

@@ -1,4 +1,4 @@
-from __future__ import print_function
+from __future__ import annotations
 
 from collections import OrderedDict
 import logging
@@ -10,11 +10,11 @@ logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
 
 class Solution:
-    def __init__(self, filename):
+    def __init__(self, filename: str):
         tree = etree.parse(filename)
         self.root = tree.getroot()
 
-    def solution_info(self):
+    def solution_info(self) -> OrderedDict:
         """
         Return a dict containing information about the solution.
         """
@@ -34,7 +34,7 @@ class Solution:
         ])
         return info
 
-    def mark_info(self):
+    def mark_info(self) -> OrderedDict:
         """
         Returns a dict containing information about the mark.
         """
@@ -48,7 +48,10 @@ class Solution:
                 info[e] = 'None'
         return info
 
-    def data_quality(self, unit='m'):
+    def data_quality(
+        self,
+        unit: str = 'm'
+    ) -> tuple[list[float], float, list[int], list[int]]:
         """
         Extract the information from an OPUS XML file DATA_QUALITY element, and return it in the desired units.
 
@@ -81,7 +84,11 @@ class Solution:
 
         return accuracy, rms, used, fixed
 
-    def plane_coords(self, system='UTM', unit='m'):
+    def plane_coords(
+        self,
+        system: str = 'UTM',
+        unit: str = 'm'
+    ) -> list[float]:
         """
         Extract the coordinate from an OPUS XML file PLANE_COORD_SPEC elements, and return it in the desired units and coordinate spec type.
 
@@ -109,7 +116,12 @@ class Solution:
 
         return coords
 
-    def position(self, system='LLA', ref_frame='NAD_83(2011)', unit='m'):
+    def position(
+        self,
+        system='LLA',
+        ref_frame='NAD_83(2011)',
+        unit='m'
+    ) -> list[float]:
         """
         Extract the coordinate from an OPUS XML file POSITION elements, and return it in the desired units and coordinate spec type.
 
@@ -148,7 +160,7 @@ class Solution:
                 h_src = float(self.root.find('ORTHO_HGT').text) * ureg(self.root.find('ORTHO_HGT').get('UNIT'))
             h = h_src.to(unit)
 
-            return lon, lat, h
+            return [lon, lat, h]
         elif system == 'XYZ':
             X = float(position.find('COORD_SET/RECT_COORD/COORDINATE[@AXIS="X"]').text) * ureg(position.find('COORD_SET/RECT_COORD/COORDINATE[@AXIS="X"]').get('UNIT'))
             Y = float(position.find('COORD_SET/RECT_COORD/COORDINATE[@AXIS="Y"]').text) * ureg(position.find('COORD_SET/RECT_COORD/COORDINATE[@AXIS="Y"]').get('UNIT'))
@@ -160,7 +172,9 @@ class Solution:
             return coords
         else:
             logger.error("{} is not an accepted value for system".format(system))
+            raise
 
-    def ref_frames(self):
+
+    def ref_frames(self) -> str:
         ref_frames = self.root.xpath('//REF_FRAME/text()')
         return ref_frames
