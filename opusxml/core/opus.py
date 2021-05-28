@@ -174,7 +174,6 @@ class Solution:
             logger.error("{} is not an accepted value for system".format(system))
             raise
 
-
     def ref_frames(self) -> str:
         ref_frames = self.root.xpath('//REF_FRAME/text()')
         return ref_frames
