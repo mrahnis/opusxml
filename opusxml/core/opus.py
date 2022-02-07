@@ -9,6 +9,7 @@ import pint
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
 
+
 class Solution:
     def __init__(self, filename: str):
         tree = etree.parse(filename)

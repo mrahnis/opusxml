@@ -5,44 +5,46 @@ OPUSXML
 OPUSXML is a Python library to read OPUSXML files produced by the Online Positioning User Service (OPUS_) hosted by the National Geodetic Survey. It prints information from OPUSXML files and converts them to formats supported by GDAL.
 
 .. image:: https://github.com/mrahnis/opusxml/workflows/Python%20package/badge.svg
-	:target: https://github.com/mrahnis/opusxml/actions?query=workflow%3A%22Python+package%22
-	:alt: Python Package
+    :target: https://github.com/mrahnis/opusxml/actions?query=workflow%3A%22Python+package%22
+    :alt: Python Package
 
 .. image:: https://github.com/mrahnis/opusxml/workflows/Conda%20package/badge.svg
-	:target: https://github.com/mrahnis/opusxml/actions?query=workflow%3A%22Conda+package%22
-	:alt: Conda Package
+    :target: https://github.com/mrahnis/opusxml/actions?query=workflow%3A%22Conda+package%22
+    :alt: Conda Package
 
 .. image:: https://readthedocs.org/projects/opusxml/badge/?version=latest
-	:target: http://opusxml.readthedocs.io/en/latest/?badge=latest
-	:alt: Documentation Status
+    :target: http://opusxml.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
 
 Installation
 ============
 
 .. image:: https://img.shields.io/pypi/v/opusxml.svg
-	:target: https://pypi.python.org/pypi/opusxml/
+    :target: https://pypi.python.org/pypi/opusxml/
 
 .. image:: https://anaconda.org/mrahnis/opusxml/badges/version.svg
-	:target: https://anaconda.org/mrahnis/opusxml
+    :target: https://anaconda.org/mrahnis/opusxml
 
 To install from the Python Package Index:
 
-.. code-block:: console
+.. code:: console
 
-	$pip install opusxml
+    pip install opusxml
 
 To install from Anaconda Cloud:
 
 If you are starting from scratch the first thing to do is install the Anaconda Python distribution, add the necessary channels to obtain the dependencies and install opusxml.
 
-.. code-block:: console
+.. code:: console
 
-	$conda config --append channels conda-forge
-	$conda install opusxml -c mrahnis
+    conda config --append channels conda-forge
+    conda install opusxml -c mrahnis
 
 To install from the source distribution execute the setup script in the opusxml directory:
 
-	$python setup.py install
+.. code:: console
+
+    python setup.py install
 
 Examples
 ========
