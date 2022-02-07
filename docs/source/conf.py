@@ -56,7 +56,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.autosummary',
               'sphinx.ext.napoleon',
-              'sphinx-copybutton']
+              'sphinx_copybutton']
 
 # fpr Napoleon to use the typehints
 napoleon_use_param = True
