@@ -1,0 +1,8 @@
+Usage: opusxml convert [OPTIONS] OUTFILE FILES
+
+Options:
+  -u, --unit UNIT      Distance units
+  -s, --system SYSTEM  Coordinate system
+  -f, --frame FRAME    Reference frame
+  -v, --verbose        Enables verbose mode
+  --help               Show this message and exit.

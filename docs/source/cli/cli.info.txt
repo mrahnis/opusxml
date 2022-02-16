@@ -1,0 +1,7 @@
+Usage: opusxml info [OPTIONS] FILES
+
+Options:
+  -u, --unit UNIT      Distance units
+  -s, --system SYSTEM  Coordinate system
+  -v, --verbose        Enables verbose mode
+  --help               Show this message and exit.
