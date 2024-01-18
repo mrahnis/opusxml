@@ -1,5 +1,0 @@
-lxml
-Click
-pint
-fiona
-shapely
