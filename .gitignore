@@ -48,6 +48,7 @@ nosetests.xml
 # Examples
 examples/
 VERSION.txt
+
 # pixi environments
 .pixi
 
